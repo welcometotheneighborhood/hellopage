@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Neighborhood!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c5aa0, #1e3d72);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px 25px;
+        }
+        
+        .intro {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 300;
+        }
+        
+        .message {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #2c5aa0;
+        }
+        
+        .message p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq {
+            margin-top: 35px;
+        }
+        
+        .faq h2 {
+            color: #2c5aa0;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 400;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            background: #f8f9ff;
+            padding: 18px 20px;
+            font-weight: 500;
+            color: #2c5aa0;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .faq-question.active::after {
+            content: '−';
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: white;
+        }
+        
+        .faq-answer.active {
+            padding: 18px 20px;
+            max-height: 400px;
+        }
+        
+        .faq-answer p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .feedback-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .feedback-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .feedback-form textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        
+        .feedback-form input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .feedback-form button {
+            width: 100%;
+            padding: 15px;
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-form button:hover {
+            background: #1e3d72;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .intro {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Our Neighborhood</h1>
+        </div>
+        
+        <div class="content">
+            <div class="message">
+                <p>The building you are renting has been reconfigured to allow for 16+ guests. The homes around it contain families, many with very young children. I hope you have an excellent vacation, but please know: We are not on vacation.</p>
+                
+                <p>I know exactly how much money you all are spending on this place. I know that many of you have traveled long distances and are seeing friends you don't get to see all the time. That's why writing this is hard. I've been to weekends like the one you're having. I wanted to have fun at them. I want you to have fun at yours. And it is 100 percent not your fault that this rental property is in the middle of a neighborhood.</p>
+                
+                <p>But, you are the only ones who might be able to help. And even just a tiny bit of awareness would be a huge relief for us and our neighbors.</p>
+                
+                <p><strong>So please know:</strong></p>
+                
+                <ul style="margin: 15px 0 15px 20px; line-height: 1.8;">
+                    <li>The owner lists the quiet hours for the house as starting at 10 p.m., but young kids need to go to bed quite a bit before that — even when it's not a school night.</li>
+                    <li>Our kids' bedrooms look right into your back yard.</li>
+                    <li>Pot smoke somehow hovers right at our patio, seemingly no matter what the wind is doing.</li>
+                </ul>
+                
+                <p>I truly feel badly to even slightly intrude on your weekend, because <strong>you are not the problem here.</strong></p>
+                
+                <p>We want you to have fun. We also want you to keep in mind the makeup of the neighborhood. Please try your best.</p>
+                
+                <p style="margin-top: 20px;"><strong>Thank you,<br>Bret Hovell</strong></p>
+            </div>
+            
+            <div class="faq">
+                <h2>FAQ</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">Why the sign? Why not just come talk to us?</button>
+                    <div class="faq-answer">
+                        <p>That's what I did for the first year or so of this house being listed for renting. But I'm not always home when guests arrive, and I have found that guests appreciate learning about this before they start drinking. This conversation does not go well at 9 p.m.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">Why not talk to the owner about this? Why come to the renters?</button>
+                    <div class="faq-answer">
+                        <p>A neighbor of mine spoke with the owner. I personally have not noticed much change. In the AirBnB/VRBO listing, there are a few lines about being respectful of the neighbors, which we appreciate. But our experience has been that most of people attending a big bachelor party weekend aren't reading the fine print.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">What's the big deal? You wouldn't complain if a neighbor was having a party, would you?</button>
+                    <div class="faq-answer">
+                        <p>It's a question of scale. With a short-term rental that is specifically marketed to bachelor parties, we're getting three or four parties a week. My neighbors just aren't that cool.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">We would like to try to be helpful. What do you wish there was less of?</button>
+                    <div class="faq-answer">
+                        <p>In order:</p>
+                        <ol style="margin: 10px 0 0 20px; line-height: 1.7;">
+                            <li>Cheering during drinking games and basketball/pickleball/volleyball games</li>
+                            <li>Amplified music</li>
+                            <li>Pot smoke</li>
+                            <li>Sports after dark. Even without cheering, I have been really surprised by how much noise basketball, pickleball and even cornhole make. For example, we can hear every time a bean bag lands, even with our doors and windows closed. I don't know what they made that particular cornhole game out of, but it's loud.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">What's the worst experience you've had?</button>
+                    <div class="faq-answer">
+                        <p>Adult entertainment in the backyard. That was an awkward conversation with my five year old.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">Have you ever had to call the cops?</button>
+                    <div class="faq-answer">
+                        <p>Yes, but not often. Most people do try to be helpful once we are able to connect.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback-section">
+                <h2 style="color: #2c5aa0; font-size: 24px; margin-bottom: 10px; text-align: center; font-weight: 400;">Questions? Comments? Insults?</h2>
+                <p style="text-align: center; color: #666; font-size: 16px; margin-bottom: 25px;">I will read them all. I am genuinely trying to figure out how to handle this situation in the best possible way.</p>
+                
+                <form action="https://formspree.io/f/xdkobnjq" method="POST" class="feedback-form">
+                    <textarea name="message" placeholder="Your message..." required></textarea>
+                    <input type="email" name="email" placeholder="Your email (optional)">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    answer.classList.add('active');
+                    question.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
